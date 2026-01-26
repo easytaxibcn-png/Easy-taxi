@@ -1,3 +1,4 @@
+import { WhatsAppButton } from "@/components/taxi/WhatsAppButton";
 import { CookieBanner } from "@/components/taxi/CokkieBanner";
 import { ContactForm } from "@/components/taxi/ContactForm";
 import { Destinations } from "@/components/taxi/Destination";
@@ -24,6 +25,7 @@ export default function Home() {
       <ContactForm />
       <Footer />
       <CookieBanner />
+      <WhatsAppButton />
     </main>
   )
 }

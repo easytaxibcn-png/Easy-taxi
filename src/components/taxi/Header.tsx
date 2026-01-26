@@ -87,7 +87,7 @@ export function Header() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
-                        className="lg:hidden fixed inset-0 h-screen bg-black z-[60] p-6 flex flex-col"
+                        className="lg:hidden fixed inset-0 h-screen bg-black z-[110] p-6 flex flex-col overflow-y-auto"
                     >
                         <div className="flex items-center justify-between mb-12">
                             <Link href="/" className="flex items-center gap-2" onClick={() => setIsMenuOpen(false)}>

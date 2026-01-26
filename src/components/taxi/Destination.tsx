@@ -1,5 +1,5 @@
 "use client"
-
+import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
 import { ChevronLeft, ChevronRight, Plane, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -7,9 +7,6 @@ import { useLanguage } from "@/contexts/LanguageContext"
 
 export function Destinations() {
   const { t } = useLanguage()
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const visibleCards = 4
-
   const popularDestinations = [
     { name: t.destinations.items["Lloret del mar"], image: "/lloret-de-mar-beach-spain-coast.jpg", type: "city" },
     { name: t.destinations.items["Port aventura"], image: "/port-aventura-theme-park-spain.jpg", type: "attraction" },
@@ -21,99 +18,144 @@ export function Destinations() {
     { name: t.destinations.items["Costa Brava"], image: "/costa-brava-spain-beach.jpg", type: "city" },
   ]
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide()
-    }, 2000)
+  const [[page, direction], setPage] = useState([0, 0])
+  const [isHovered, setIsHovered] = useState(false)
 
-    return () => clearInterval(interval)
-  }, [currentIndex])
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + visibleCards >= popularDestinations.length ? 0 : prev + 1))
+  const paginate = (newDirection: number) => {
+    setPage([page + newDirection, newDirection])
   }
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? popularDestinations.length - visibleCards : prev - 1))
+  const wrapIndex = (i: number) => {
+    return ((i % popularDestinations.length) + popularDestinations.length) % popularDestinations.length
+  }
+
+  // Auto-play effect
+  useEffect(() => {
+    if (isHovered) return
+
+    const timer = setInterval(() => {
+      paginate(1)
+    }, 4000)
+
+    return () => clearInterval(timer)
+  }, [page, isHovered])
+
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 300 : -300,
+      opacity: 0,
+      scale: 0.95
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      scale: 1
+    },
+    exit: (direction: number) => ({
+      zIndex: 0,
+      x: direction < 0 ? 300 : -300,
+      opacity: 0,
+      scale: 0.95
+    })
   }
 
   return (
-    <section className="py-16  ">
-      <div className="container mx-auto px-4">
-        <h2 className="text-2xl text-white md:text-3xl font-bold text-center text-foreground mb-2">
-          {t.destinations.title}
-        </h2>
-        <p className="text-center text-white mb-10">{t.destinations.subtitle}</p>
-
-        <div className="relative">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-background/80 hover:bg-background"
-            onClick={prevSlide}
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </Button>
-
-          <div className="overflow-hidden mx-12">
-            <div
-              className="flex gap-4 transition-transform duration-500"
-              style={{ transform: `translateX(-${currentIndex * (100 / visibleCards)}%)` }}
-            >
-             {popularDestinations.map((dest, index) => (
-  <div
-    key={index}
-    className="flex-shrink-0 w-1/2 md:w-1/4 h-80 relative rounded-xl overflow-hidden cursor-pointer group"
-  >
-    {/* Tipo de destino */}
-    <div className="absolute top-3 right-3 z-10 bg-taxi-yellow/90 rounded-full p-2">
-      {dest.type === "airport" ? (
-        <Plane className="w-5 h-5 text-background" />
-      ) : (
-        <MapPin className="w-5 h-5 text-background" />
-      )}
-    </div>
-
-    {/* Imagen */}
-    <img
-      src={dest.image || "/placeholder.svg"}
-      alt={dest.name}
-      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-    />
-
-    {/* Gradiente */}
-    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-
-    {/* Nombre del destino */}
-    <div className="absolute bottom-4 left-4">
-      <h3 className="text-white font-bold text-lg">{dest.name}</h3>
-    </div>
-  </div>
-))}
-
-            </div>
+    <section className="py-32 bg-[#050505] overflow-hidden">
+      <div className="container mx-auto px-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16"
+        >
+          <div className="max-w-2xl">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 uppercase tracking-tighter">
+              {t.destinations.title}
+            </h2>
+            <p className="text-gray-400 font-medium italic">{t.destinations.subtitle}</p>
           </div>
+          
+          <div className="flex gap-4">
+            <Button
+              onClick={() => paginate(-1)}
+              variant="outline"
+              size="icon"
+              className="w-14 h-14 rounded-2xl bg-white/5 border-white/10 text-white hover:bg-taxi-yellow hover:text-black hover:border-taxi-yellow transition-all"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </Button>
+            <Button
+              onClick={() => paginate(1)}
+              variant="outline"
+              size="icon"
+              className="w-14 h-14 rounded-2xl bg-white/5 border-white/10 text-white hover:bg-taxi-yellow hover:text-black hover:border-taxi-yellow transition-all"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </Button>
+          </div>
+        </motion.div>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-background/80 hover:bg-background"
-            onClick={nextSlide}
-          >
-            <ChevronRight className="w-6 h-6" />
-          </Button>
-        </div>
+        <div 
+          className="relative h-[450px]"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <div className="flex gap-6 h-full">
+            <AnimatePresence initial={false} custom={direction} mode="popLayout">
+              {[0, 1, 2, 3].map((offset) => {
+                const index = wrapIndex(page + offset)
+                const dest = popularDestinations[index]
+                return (
+                  <motion.div
+                    key={`${page}-${offset}`}
+                    custom={direction}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{
+                      x: { type: "spring", stiffness: 100, damping: 20 },
+                      opacity: { duration: 0.4 },
+                      scale: { duration: 0.4 }
+                    }}
+                    className={`shrink-0 relative rounded-[2.5rem] overflow-hidden group/card bg-white/5 border border-white/10 ${
+                      offset === 0 ? "w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]" : 
+                      offset === 1 ? "hidden md:flex md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]" :
+                      "hidden lg:flex lg:w-[calc(25%-18px)]"
+                    }`}
+                  >
+                    {/* Destination Type */}
+                    <div className="absolute top-6 right-6 z-20 bg-taxi-yellow text-black rounded-2xl p-3 shadow-2xl transition-transform group-hover/card:scale-110">
+                      {dest.type === "airport" ? (
+                        <Plane className="w-5 h-5 shrink-0" />
+                      ) : (
+                        <MapPin className="w-5 h-5 shrink-0" />
+                      )}
+                    </div>
 
-        <div className="flex justify-center gap-2 mt-6">
-          {Array.from({ length: Math.ceil(popularDestinations.length / visibleCards) }).map((_, i) => (
-            <button
-              key={i}
-              className={`w-2 h-2 rounded-full transition-colors ${
-                Math.floor(currentIndex / visibleCards) === i ? "bg-taxi-yellow" : "bg-gray-400"
-              }`}
-              onClick={() => setCurrentIndex(i * visibleCards)}
-            />
-          ))}
+                    {/* Image */}
+                    <div className="absolute inset-0 z-0">
+                       <img
+                         src={dest.image || "/placeholder.svg"}
+                         alt={dest.name}
+                         className="w-full h-full object-cover group-hover/card:scale-110 transition-transform duration-700 opacity-60 group-hover/card:opacity-90"
+                       />
+                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                    </div>
+
+                    {/* Content */}
+                    <div className="absolute bottom-10 left-10 right-10 z-10">
+                      <div className="w-10 h-1 bg-taxi-yellow mb-4 rounded-full group-hover/card:w-16 transition-all duration-500" />
+                      <h3 className="text-white font-bold text-2xl leading-tight group-hover/card:text-taxi-yellow transition-colors italic">
+                        {dest.name}
+                      </h3>
+                    </div>
+                  </motion.div>
+                )
+              })}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>

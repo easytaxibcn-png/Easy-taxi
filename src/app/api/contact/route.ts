@@ -46,162 +46,102 @@ export async function POST(request: Request) {
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Nueva Reserva - Easy Taxi BCN</title>
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body { margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #0f0f0f; color: #ffffff; }
+        .wrapper { width: 100%; table-layout: fixed; background-color: #0f0f0f; padding-bottom: 60px; }
+        .main { background-color: #1a1a1a; margin: 0 auto; width: 100%; max-width: 600px; border-spacing: 0; border-radius: 20px; overflow: hidden; border: 1px solid #333; }
+        .header { background-color: #fbb024; padding: 40px; text-align: center; }
+        .content { padding: 40px; }
+        .section-title { font-size: 11px; font-weight: 900; color: #fbb024; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; display: block; }
+        .data-card { background-color: #252525; border-radius: 12px; padding: 25px; margin-bottom: 25px; border-left: 4px solid #fbb024; }
+        .field { margin-bottom: 15px; }
+        .field:last-child { margin-bottom: 0; }
+        .label { font-size: 10px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        .value { font-size: 16px; font-weight: 700; color: #fff; margin-top: 4px; display: block; }
+        .value-yellow { color: #fbb024; font-style: italic; }
+        .btn { display: inline-block; background-color: #fff; color: #000; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 14px; margin-top: 20px; transition: all .3s; }
+        .footer { padding: 30px; text-align: center; font-size: 11px; color: #555; }
+      </style>
     </head>
-    <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f4;">
-      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f4f4f4; padding: 20px 0;">
-        <tr>
-          <td align="center">
-            <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-              
-              <!-- Header -->
-              <tr>
-                <td style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); padding: 30px 40px; text-align: center;">
-                  <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td align="center">
-                        <div style="background-color: #FFD700; width: 60px; height: 60px; border-radius: 50%; display: inline-block; line-height: 60px; font-size: 28px;">🚕</div>
-                        <h1 style="color: #FFD700; margin: 15px 0 5px 0; font-size: 28px; font-weight: 700; letter-spacing: 1px;">NUEVA RESERVA</h1>
-                        <p style="color: #cccccc; margin: 0; font-size: 14px;">Easy Taxi BCN</p>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
+    <body>
+      <center class="wrapper">
+        <table class="main" role="presentation">
+          <tr>
+            <td class="header">
+              <span style="background: #000; color: #fbb024; padding: 8px 15px; border-radius: 8px; font-weight: 900; font-size: 20px;">T</span>
+              <h1 style="color: #000; margin: 20px 0 5px 0; font-size: 28px; font-weight: 900; text-transform: uppercase; letter-spacing: -1px;">NUEVA RESERVA</h1>
+              <p style="color: rgba(0,0,0,0.6); margin: 0; font-weight: 700; font-size: 14px;">⚡️ Contactar urgente</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="content">
+              <span class="section-title">👤 DATOS DEL CLIENTE</span>
+              <div class="data-card">
+                <div class="field">
+                  <span class="label">Nombre completo</span>
+                  <span class="value">${nombre}</span>
+                </div>
+                <div class="field">
+                  <span class="label">Teléfono Móvil</span>
+                  <a href="tel:${telefono}" class="value" style="color: #fbb024; text-decoration: none;">${telefono}</a>
+                </div>
+                <div class="field">
+                  <span class="label">Correo Electrónico</span>
+                  <a href="mailto:${email}" class="value" style="text-decoration: none;">${email}</a>
+                </div>
+              </div>
 
-              <!-- Alert Banner -->
-              <tr>
-                <td style="background-color: #FFD700; padding: 12px 40px; text-align: center;">
-                  <p style="margin: 0; color: #1a1a1a; font-weight: 600; font-size: 14px;">⚡ Contactar al cliente en menos de 10 minutos</p>
-                </td>
-              </tr>
-
-              <!-- Client Data Section -->
-              <tr>
-                <td style="padding: 30px 40px 20px 40px;">
-                  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f8f9fa; border-radius: 10px; border-left: 4px solid #FFD700;">
-                    <tr>
-                      <td style="padding: 20px;">
-                        <h2 style="margin: 0 0 15px 0; color: #1a1a1a; font-size: 18px; display: flex; align-items: center;">
-                          <span style="background-color: #1a1a1a; color: #FFD700; width: 28px; height: 28px; border-radius: 50%; display: inline-block; text-align: center; line-height: 28px; font-size: 14px; margin-right: 10px;">👤</span>
-                          Datos del Cliente
-                        </h2>
-                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
-                          <tr>
-                            <td style="padding: 8px 0; border-bottom: 1px solid #e9ecef;">
-                              <span style="color: #6c757d; font-size: 13px;">Nombre</span><br>
-                              <span style="color: #1a1a1a; font-size: 15px; font-weight: 600;">${nombre}</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td style="padding: 8px 0; border-bottom: 1px solid #e9ecef;">
-                              <span style="color: #6c757d; font-size: 13px;">Email</span><br>
-                              <a href="mailto:${email}" style="color: #1a1a1a; font-size: 15px; font-weight: 600; text-decoration: none;">${email}</a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td style="padding: 8px 0;">
-                              <span style="color: #6c757d; font-size: 13px;">Teléfono</span><br>
-                              <a href="tel:${telefono}" style="color: #1a1a1a; font-size: 15px; font-weight: 600; text-decoration: none;">${telefono}</a>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-
-              <!-- Service Details Section -->
-              <tr>
-                <td style="padding: 0 40px 30px 40px;">
-                  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #1a1a1a; border-radius: 10px;">
-                    <tr>
-                      <td style="padding: 20px;">
-                        <h2 style="margin: 0 0 20px 0; color: #FFD700; font-size: 18px;">
-                          🚖 Detalles del Servicio
-                        </h2>
-                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
-                          <tr>
-                            <td width="50%" style="padding: 10px 10px 10px 0; vertical-align: top;">
-                              <div style="background-color: #2d2d2d; border-radius: 8px; padding: 15px;">
-                                <span style="color: #FFD700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Tipo de Taxi</span><br>
-                                <span style="color: #ffffff; font-size: 16px; font-weight: 600;">${tipoTaxiLabels[tipoTaxi] || tipoTaxi}</span>
-                              </div>
-                            </td>
-                            <td width="50%" style="padding: 10px 0 10px 10px; vertical-align: top;">
-                              <div style="background-color: #2d2d2d; border-radius: 8px; padding: 15px;">
-                                <span style="color: #FFD700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Pasajeros</span><br>
-                                <span style="color: #ffffff; font-size: 16px; font-weight: 600;">${pasajeros} persona(s)</span>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="2" style="padding: 10px 0;">
-                              <div style="background-color: #2d2d2d; border-radius: 8px; padding: 15px;">
-                                <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
-                                  <tr>
-                                    <td width="50%">
-                                      <span style="color: #4CAF50; font-size: 12px;">📍 ORIGEN</span><br>
-                                      <span style="color: #ffffff; font-size: 14px;">${origen}</span>
-                                    </td>
-                                    <td width="50%">
-                                      <span style="color: #f44336; font-size: 12px;">📍 DESTINO</span><br>
-                                      <span style="color: #ffffff; font-size: 14px;">${destinoLabels[destino] || destino}</span>
-                                    </td>
-                                  </tr>
-                                </table>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td width="50%" style="padding: 10px 10px 10px 0; vertical-align: top;">
-                              <div style="background-color: #2d2d2d; border-radius: 8px; padding: 15px;">
-                                <span style="color: #FFD700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">📅 Fecha</span><br>
-                                <span style="color: #ffffff; font-size: 16px; font-weight: 600;">${fecha}</span>
-                              </div>
-                            </td>
-                            <td width="50%" style="padding: 10px 0 10px 10px; vertical-align: top;">
-                              <div style="background-color: #2d2d2d; border-radius: 8px; padding: 15px;">
-                                <span style="color: #FFD700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">🕐 Hora</span><br>
-                                <span style="color: #ffffff; font-size: 16px; font-weight: 600;">${hora}</span>
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-
-              ${mensaje
-                ? `
-              <!-- Additional Info -->
-              <tr>
-                <td style="padding: 0 40px 30px 40px;">
-                  <div style="background-color: #fff3cd; border-radius: 8px; padding: 15px; border-left: 4px solid #FFD700;">
-                    <h3 style="margin: 0 0 10px 0; color: #1a1a1a; font-size: 14px;">💬 Información Adicional</h3>
-                    <p style="margin: 0; color: #1a1a1a; font-size: 14px; line-height: 1.5;">${mensaje}</p>
+              <span class="section-title">🚖 DETALLES DEL TRAYECTO</span>
+              <div class="data-card" style="border-left-color: #fff;">
+                <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+                  <div style="flex: 1;">
+                    <span class="label">📅 Fecha</span>
+                    <span class="value">${fecha}</span>
                   </div>
-                </td>
-              </tr>
-              `
-                : ""
-            }
+                  <div style="flex: 1;">
+                    <span class="label">🕐 Hora</span>
+                    <span class="value">${hora}</span>
+                  </div>
+                </div>
+                <div class="field">
+                  <span class="label">📍 Origen</span>
+                  <span class="value">${origen}</span>
+                </div>
+                <div class="field">
+                  <span class="label">🏁 Destino</span>
+                  <span class="value">${destinoLabels[destino] || destino}</span>
+                </div>
+                <div class="field">
+                  <span class="label">Tipo de Vehículo</span>
+                  <span class="value value-yellow">${tipoTaxiLabels[tipoTaxi] || tipoTaxi}</span>
+                </div>
+                <div class="field">
+                  <span class="label">Pasajeros</span>
+                  <span class="value">${pasajeros} persona(s)</span>
+                </div>
+              </div>
 
-              <!-- Footer -->
-              <tr>
-                <td style="background-color: #1a1a1a; padding: 20px 40px; text-align: center;">
-                  <p style="margin: 0; color: #888888; font-size: 12px;">
-                    Easy Taxi BCN © ${new Date().getFullYear()} | Todos los derechos reservados
-                  </p>
-                </td>
-              </tr>
+              ${mensaje ? `
+              <span class="section-title">💬 NOTAS ADICIONALES</span>
+              <div class="data-card" style="border-left-color: #555;">
+                <span class="value" style="font-weight: 400; font-style: italic; font-size: 14px; line-height: 1.6; color: #ccc;">"${mensaje}"</span>
+              </div>
+              ` : ''}
 
-            </table>
-          </td>
-        </tr>
-      </table>
+              <div style="text-align: center;">
+                <a href="tel:${telefono}" class="btn">LLAMAR AHORA</a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="footer">
+              <p>Easy Taxi BCN &copy; ${new Date().getFullYear()} | Panel de Administración</p>
+            </td>
+          </tr>
+        </table>
+      </center>
     </body>
     </html>
     `
@@ -212,132 +152,106 @@ export async function POST(request: Request) {
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Confirmación de Reserva - Easy Taxi BCN</title>
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #ffffff; }
+        .wrapper { width: 100%; table-layout: fixed; background-color: #0a0a0a; padding-bottom: 60px; }
+        .main { background-color: #121212; margin: 40px auto; width: 100%; max-width: 600px; border-spacing: 0; border-radius: 30px; overflow: hidden; }
+        .hero { background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%); padding: 60px 40px; text-align: center; position: relative; border-bottom: 1px solid #333; }
+        .status-badge { background-color: #fbb024; color: #000; padding: 6px 15px; border-radius: 20px; font-weight: 900; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 20px; }
+        .content { padding: 50px 40px; }
+        .receipt { background-color: #1a1a1a; border: 1px solid #333; border-radius: 20px; padding: 30px; }
+        .receipt-row { padding: 15px 0; border-bottom: 1px solid #252525; }
+        .receipt-row:last-child { border-bottom: none; }
+        .label { font-size: 10px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 1px; }
+        .value { font-size: 14px; font-weight: 700; color: #fff; margin-top: 5px; }
+        .footer { padding: 40px; text-align: center; background-color: #000; }
+        .social-link { color: #fbb024; text-decoration: none; font-weight: 700; margin: 0 10px; }
+      </style>
     </head>
-    <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f4;">
-      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f4f4f4; padding: 20px 0;">
-        <tr>
-          <td align="center">
-            <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-              
-              <!-- Header -->
-              <tr>
-                <td style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); padding: 40px; text-align: center;">
-                  <div style="background-color: #FFD700; width: 80px; height: 80px; border-radius: 50%; display: inline-block; line-height: 80px; font-size: 40px; margin-bottom: 15px;">🚕</div>
-                  <h1 style="color: #FFD700; margin: 0 0 5px 0; font-size: 32px; font-weight: 700;">Easy Taxi BCN</h1>
-                  <p style="color: #cccccc; margin: 0; font-size: 14px; letter-spacing: 2px;">SERVICIO DE TAXI BARCELONA</p>
-                </td>
-              </tr>
+    <body>
+      <center class="wrapper">
+        <table class="main" role="presentation">
+          <tr>
+            <td class="hero">
+              <div class="status-badge">RECIBIDO CORRECTAMENTE</div>
+              <h1 style="color: #fff; margin: 0; font-size: 32px; font-weight: 900; letter-spacing: -1px;">¡Gracias, ${nombre}!</h1>
+              <p style="color: #888; margin: 15px 0 0 0; font-size: 16px; font-style: italic;">Hemos recibido tu solicitud de reserva en Easy Taxi BCN.</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="content">
+              <h2 style="font-size: 18px; font-weight: 900; color: #fbb024; margin-bottom: 30px; text-align: center; text-transform: uppercase; letter-spacing: 1px;">⚙️ Próximos pasos</h2>
+              <p style="color: #ccc; font-size: 15px; line-height: 1.6; text-align: center; margin-bottom: 40px;">
+                Nuestro equipo está procesando tu solicitud. Te enviaremos una <strong>confirmación final</strong> por WhatsApp o llamada en los próximos minutos.
+              </p>
 
-              <!-- Success Message -->
-              <tr>
-                <td style="padding: 30px 40px 20px 40px; text-align: center;">
-                  <div style="background-color: #d4edda; border-radius: 50%; width: 60px; height: 60px; display: inline-block; line-height: 60px; font-size: 30px; margin-bottom: 15px;">✓</div>
-                  <h2 style="color: #1a1a1a; margin: 0 0 10px 0; font-size: 24px;">¡Gracias, ${nombre}!</h2>
-                  <p style="color: #6c757d; margin: 0; font-size: 16px; line-height: 1.6;">
-                    Hemos recibido tu solicitud de reserva correctamente.
-                  </p>
-                </td>
-              </tr>
+              <div class="receipt">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                  <span style="font-size: 12px; font-weight: 900; color: #fff; text-transform: uppercase;">Resumen del viaje</span>
+                  <span style="font-size: 10px; color: #555;">BCN-${Math.random().toString(36).substr(2, 6).toUpperCase()}</span>
+                </div>
+                
+                <div class="receipt-row">
+                  <table width="100%">
+                    <tr>
+                      <td width="50%">
+                        <span class="label">📅 Fecha</span>
+                        <div class="value">${fecha}</div>
+                      </td>
+                      <td width="50%">
+                        <span class="label">🕐 Hora</span>
+                        <div class="value">${hora}</div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
 
-              <!-- Time Alert -->
-              <tr>
-                <td style="padding: 0 40px 30px 40px;">
-                  <div style="background-color: #FFD700; border-radius: 10px; padding: 20px; text-align: center;">
-                    <p style="margin: 0; color: #1a1a1a; font-size: 16px; font-weight: 600;">
-                      ⏱️ Te contactaremos lo antes posible  para confirmar tu reserva
-                    </p>
-                  </div>
-                </td>
-              </tr>
+                <div class="receipt-row">
+                  <span class="label">📍 Punto de Recogida</span>
+                  <div class="value">${origen}</div>
+                </div>
 
-              <!-- Reservation Summary -->
-              <tr>
-                <td style="padding: 0 40px 30px 40px;">
-                  <div style="background-color: #1a1a1a; border-radius: 12px; overflow: hidden;">
-                    <div style="background-color: #FFD700; padding: 15px 20px;">
-                      <h3 style="margin: 0; color: #1a1a1a; font-size: 16px; font-weight: 700;">📋 RESUMEN DE TU RESERVA</h3>
-                    </div>
-                    <div style="padding: 20px;">
-                      <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
-                        <tr>
-                          <td style="padding: 12px 0; border-bottom: 1px solid #333;">
-                            <span style="color: #FFD700; font-size: 12px; text-transform: uppercase;">Tipo de Taxi</span><br>
-                            <span style="color: #ffffff; font-size: 16px; font-weight: 500;">${tipoTaxiLabels[tipoTaxi] || tipoTaxi}</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td style="padding: 12px 0; border-bottom: 1px solid #333;">
-                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
-                              <tr>
-                                <td width="50%">
-                                  <span style="color: #4CAF50; font-size: 12px;">📍 ORIGEN</span><br>
-                                  <span style="color: #ffffff; font-size: 14px;">${origen}</span>
-                                </td>
-                                <td width="50%">
-                                  <span style="color: #f44336; font-size: 12px;">📍 DESTINO</span><br>
-                                  <span style="color: #ffffff; font-size: 14px;">${destinoLabels[destino] || destino}</span>
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td style="padding: 12px 0; border-bottom: 1px solid #333;">
-                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
-                              <tr>
-                                <td width="50%">
-                                  <span style="color: #FFD700; font-size: 12px;">📅 FECHA</span><br>
-                                  <span style="color: #ffffff; font-size: 16px; font-weight: 500;">${fecha}</span>
-                                </td>
-                                <td width="50%">
-                                  <span style="color: #FFD700; font-size: 12px;">🕐 HORA</span><br>
-                                  <span style="color: #ffffff; font-size: 16px; font-weight: 500;">${hora}</span>
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td style="padding: 12px 0;">
-                            <span style="color: #FFD700; font-size: 12px; text-transform: uppercase;">Pasajeros</span><br>
-                            <span style="color: #ffffff; font-size: 16px; font-weight: 500;">${pasajeros} persona(s)</span>
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  </div>
-                </td>
-              </tr>
+                <div class="receipt-row">
+                  <span class="label">🏁 Destino</span>
+                  <div class="value">${destinoLabels[destino] || destino}</div>
+                </div>
 
-              <!-- Contact Info -->
-              <tr>
-                <td style="padding: 0 40px 30px 40px;">
-                  <div style="background-color: #f8f9fa; border-radius: 10px; padding: 20px; text-align: center;">
-                    <p style="margin: 0 0 10px 0; color: #6c757d; font-size: 14px;">¿Tienes alguna pregunta?</p>
-                    <p style="margin: 0; color: #1a1a1a; font-size: 16px; font-weight: 600;">
-                      📞 Llámanos o escríbenos por WhatsApp
-                    </p>
-                  </div>
-                </td>
-              </tr>
+                <div class="receipt-row">
+                  <table width="100%">
+                    <tr>
+                      <td width="50%">
+                        <span class="label">🚗 Vehículo</span>
+                        <div class="value" style="color: #fbb024;">${tipoTaxiLabels[tipoTaxi] || tipoTaxi}</div>
+                      </td>
+                      <td width="50%">
+                        <span class="label">👥 Pasajeros</span>
+                        <div class="value">${pasajeros}</div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
 
-              <!-- Footer -->
-              <tr>
-                <td style="background-color: #1a1a1a; padding: 25px 40px; text-align: center;">
-                  <p style="margin: 0 0 10px 0; color: #FFD700; font-size: 14px; font-weight: 600;">Easy Taxi BCN</p>
-                  <p style="margin: 0; color: #888888; font-size: 12px;">
-                    © ${new Date().getFullYear()} Todos los derechos reservados
-                  </p>
-                  <p style="margin: 10px 0 0 0; color: #666666; font-size: 11px;">
-                    Este correo ha sido enviado automáticamente. Por favor, no respondas a este mensaje.
-                  </p>
-                </td>
-              </tr>
-
-            </table>
-          </td>
-        </tr>
-      </table>
+              <div style="margin-top: 40px; text-align: center;">
+                <p style="color: #555; font-size: 13px;">¿Necesitas hacer cambios?</p>
+                <a href="tel:+34641230218" style="color: #fff; font-weight: 900; font-size: 18px; text-decoration: none;">+34 641 230 218</a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="footer">
+              <p style="color: #fff; font-weight: 900; font-size: 14px; margin-bottom: 15px;">Easy Taxi BCN</p>
+              <div style="margin-bottom: 20px;">
+                <a href="#" class="social-link">Instagram</a>
+                <a href="#" class="social-link">WhatsApp</a>
+              </div>
+              <p style="color: #333; font-size: 10px;">Enviado automáticamente. No respondas a este mensaje.</p>
+            </td>
+          </tr>
+        </table>
+      </center>
     </body>
     </html>
     `

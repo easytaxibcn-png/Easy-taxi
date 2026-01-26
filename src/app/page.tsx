@@ -11,23 +11,19 @@ import { TaxiTypes } from "@/components/taxi/TaxiTypes";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-[#050505]">
       <Header />
-      <div className=" bg-gradient-to-b bg-taxi-yellow">
       <HeroSection />
 
       <FeaturesBar />
       <TaxiTypes />
-      </div>
       <HowItWorks />
-      <div className=" bg-gradient-to-b from-black to-gray-950">
 
       <Destinations />
       <DriversSection />
-      </div>
-        <ContactForm />
+      <ContactForm />
       <Footer />
-            <CookieBanner />
+      <CookieBanner />
     </main>
   )
 }

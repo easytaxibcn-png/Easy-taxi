@@ -16,7 +16,7 @@ export function FeaturesBar() {
   ]
 
   return (
-    <section className="py-24 w-full overflow-hidden">
+    <section className="py-24 w-full overflow-hidden ">
        
      
         

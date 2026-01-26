@@ -8,7 +8,7 @@ export function HeroSection() {
     const { t } = useLanguage()
 
     return (
-        <section id="inicio" className="relative overflow-hidden min-h-[65vh] md:min-h-[80vh] flex items-center">
+        <section id="inicio" className="relative overflow-hidden min-h-[90vh] md:min-h-[80vh] flex items-center">
             {/* Background Effects */}
             <div className="absolute inset-0 z-0">
                
@@ -97,6 +97,9 @@ export function HeroSection() {
             <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
                 <div className="absolute top-0 right-0 w-full h-full bg-[linear-gradient(45deg,transparent_45%,#fff_50%,transparent_55%)] bg-size-[200%_200%] animate-pulse" />
             </div>
+
+            {/* Smooth bottom transition */}
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#050505] to-transparent z-10 pointer-events-none" />
         </section>
     )
 }

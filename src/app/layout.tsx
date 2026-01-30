@@ -7,7 +7,7 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "UmarTaxi - Taxi Barcelona 24/7 | Precio Cerrado Garantizado",
+  title: "EasyTaxiBcn - Taxi Barcelona 24/7 | Precio Cerrado Garantizado",
   description:
     "Servicio de taxi en Barcelona con precio cerrado garantizado. Taxis hasta 8 plazas, premium y adaptados PMR. Reserva ahora y paga al finalizar.",
   icons: {

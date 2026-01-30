@@ -48,8 +48,8 @@ export function Footer() {
                         </div>
                         <div className="group border-t border-white/5 pt-10 sm:border-t-0 sm:pt-0 md:border-t md:pt-10">
                           <p className="text-[9px] font-black uppercase tracking-[0.4em] text-taxi-yellow/40 mb-3">Email Support</p>
-                          <Link href="mailto:info@easytaxibcn.com" className="text-2xl font-black text-white hover:text-taxi-yellow transition-all italic tracking-tighter block group-hover:translate-x-2">
-                              info@easytaxibcn.com
+                          <Link href="mailto:easytaxibcn@gmail.com" className="text-2xl font-black text-white hover:text-taxi-yellow transition-all italic tracking-tighter block group-hover:translate-x-2">
+                              easytaxibcn@gmail.com
                           </Link>
                         </div>
                     </div>

@@ -400,8 +400,8 @@ export const translations: Record<Language, TranslationType> = {
       },
     },
     footer: {
-      brand: "taxiBcn",
-      rights: "© 2025 taxiBcn. All rights reserved",
+      brand: "easyTaxiBcn",
+      rights: "© 2025 easyTaxiBcn. All rights reserved",
     },
     cookies: {
       title: "Cookies Policy",

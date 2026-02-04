@@ -133,7 +133,7 @@ export const translations: Record<Language, TranslationType> = {
       inicio: "Inicio",
       tipos: "Nuestros Taxis",
       servicios: "Servicios",
-      precios: "Precios",
+      precios: "Ruta Destinos",
       contacto: "Contacto",
     },
     hero: {
@@ -294,7 +294,7 @@ export const translations: Record<Language, TranslationType> = {
       inicio: "Home",
       tipos: "Our Taxis",
       servicios: "Services",
-      precios: "Prices",
+      precios: "Route Destinations",
       contacto: "Contact",
     },
     hero: {

@@ -24,9 +24,19 @@ export function Header() {
         { id: "inicio", label: t.nav.inicio },
         { id: "tipos", label: t.nav.tipos },
         { id: "servicios", label: t.nav.servicios },
-        { id: "precios", label: t.nav.precios },
+        { id: "destinos", label: t.nav.precios },
         { id: "contacto", label: t.nav.contacto },
     ]
+
+    const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+        e.preventDefault()
+        setIsMenuOpen(false)
+        const element = document.getElementById(id)
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" })
+            window.history.pushState(null, "", `#${id}`)
+        }
+    }
 
     return (
         <header 
@@ -46,7 +56,7 @@ export function Header() {
                             Easytaxi<span className="text-taxi-yellow italic">Bcn</span>
                         </span>
                     </Link>
-
+ 
                     {/* Desktop Navigation */}
                     <nav className="hidden lg:flex items-center gap-8">
                         {navItems.map(item => (
@@ -54,12 +64,13 @@ export function Header() {
                                 key={item.id}
                                 href={`#${item.id}`}
                                 className="text-sm font-semibold text-white/70 hover:text-taxi-yellow transition-all hover:translate-y-[-2px] tracking-wide uppercase"
+                                onClick={(e) => scrollToSection(e, item.id)}
                             >
                                 {item.label}
                             </Link>
                         ))}
                     </nav>
-
+ 
                     <div className="hidden lg:flex items-center gap-4">
                         <LanguageSelector/>
                         <div className="h-6 w-px bg-white/10 mx-2" />
@@ -69,7 +80,7 @@ export function Header() {
                             className="bg-taxi-yellow text-black hover:bg-white hover:scale-105 transition-all duration-300 shadow-[0_10px_20px_rgba(251,191,36,0.2)] rounded-xl px-6 py-2.5 font-bold"
                         />
                     </div>
-
+ 
                     {/* Mobile Menu Button */}
                     <button
                         className="lg:hidden w-11 h-11 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white"
@@ -79,7 +90,7 @@ export function Header() {
                     </button>
                 </div>
             </div>
-
+ 
             {/* Mobile Navigation */}
             <AnimatePresence>
                 {isMenuOpen && (
@@ -103,7 +114,7 @@ export function Header() {
                                 <X className="w-6 h-6" />
                             </button>
                         </div>
-
+ 
                         <div className="flex flex-col gap-2">
                             {navItems.map((item, i) => (
                                 <motion.div
@@ -115,14 +126,14 @@ export function Header() {
                                     <Link
                                         href={`#${item.id}`}
                                         className="text-3xl font-bold text-white hover:text-taxi-yellow py-4 block border-b border-white/5"
-                                        onClick={() => setIsMenuOpen(false)}
+                                        onClick={(e) => scrollToSection(e, item.id)}
                                     >
                                         {item.label}
                                     </Link>
                                 </motion.div>
                             ))}
                         </div>
-
+ 
                         <div className="mt-auto space-y-4">
                             <div className="flex items-center justify-between bg-white/5 p-4 rounded-2xl border border-white/10">
                                 <span className="font-semibold text-white/50 text-sm tracking-wider uppercase">Idioma</span>

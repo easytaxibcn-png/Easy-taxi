@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { Check, ShieldCheck, Star, BadgeCheck } from "lucide-react"
 import { useLanguage } from "@/contexts/LanguageContext"
+import Image from "next/image"
 
 export function DriversSection() {
   const { t } = useLanguage()
@@ -48,26 +49,45 @@ export function DriversSection() {
               </div>
             </div>
 
-            {/* Features */}
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-              {t.drivers.list.map((feature: string, index: number) => (
-                <motion.li 
-                  key={index} 
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="flex items-start gap-4"
-                >
-                  <div className="w-8 h-8 bg-taxi-yellow/10 border border-taxi-yellow/30 rounded-full flex items-center justify-center shrink-0 mt-1">
-                    <Check className="w-4 h-4 text-taxi-yellow" />
-                  </div>
-                  <span className="text-gray-300 text-lg font-medium leading-relaxed">
-                    {feature}
-                  </span>
-                </motion.li>
-              ))}
-            </ul>
+            {/* Features and Logo */}
+            <div className="flex flex-col lg:flex-row items-center gap-12">
+              <ul className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                {t.drivers.list.map((feature: string, index: number) => (
+                  <motion.li 
+                    key={index} 
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-4"
+                  >
+                    <div className="w-8 h-8 bg-taxi-yellow/10 border border-taxi-yellow/30 rounded-full flex items-center justify-center shrink-0 mt-1">
+                      <Check className="w-4 h-4 text-taxi-yellow" />
+                    </div>
+                    <span className="text-gray-300 text-lg font-medium leading-relaxed">
+                      {feature}
+                    </span>
+                  </motion.li>
+                ))}
+              </ul>
+
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="shrink-0"
+              >
+                <div className="relative w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
+                  <div className="absolute inset-0 bg-taxi-yellow blur-[60px] opacity-10 animate-pulse" />
+                  <Image
+                    src="https://res.cloudinary.com/dbys9ezjr/image/upload/v1770209278/conductor-de-taxi_hwkzjf.png"
+                    alt="Taxi Driver Logo"
+                    fill
+                    className="object-contain relative z-10"
+                  />
+                </div>
+              </motion.div>
+            </div>
 
             {/* Trust indicators */}
             <div className="grid grid-cols-2 gap-8 mt-16 pt-12 border-t border-white/10">

@@ -66,6 +66,7 @@ export function ContactForm() {
     telefono: "",
     tipoTaxi: "",
     origen: "",
+    origenCoords: null as { lat: number; lng: number } | null,
     destino: "",
     destinoCoords: null as { lat: number; lng: number } | null,
     fecha: "",
@@ -77,6 +78,8 @@ export function ContactForm() {
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState("")
   const [showMap, setShowMap] = useState(false)
+  const [mapTarget, setMapTarget] = useState<"origen" | "destino">("origen")
+  const [origenInputMode, setOrigenInputMode] = useState<"text" | "select">("text")
   const [destinoInputMode, setDestinoInputMode] = useState<"text" | "select">("text")
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -104,6 +107,7 @@ export function ContactForm() {
         telefono: "",
         tipoTaxi: "",
         origen: "",
+        origenCoords: null,
         destino: "",
         destinoCoords: null,
         fecha: "",
@@ -119,8 +123,17 @@ export function ContactForm() {
   }
 
   const handleMapSelect = (address: string, coords: { lat: number; lng: number }) => {
-    setFormData({ ...formData, destino: address, destinoCoords: coords })
+    if (mapTarget === "origen") {
+      setFormData({ ...formData, origen: address, origenCoords: coords })
+    } else {
+      setFormData({ ...formData, destino: address, destinoCoords: coords })
+    }
     setShowMap(false)
+  }
+
+  const openMap = (target: "origen" | "destino") => {
+    setMapTarget(target)
+    setShowMap(true)
   }
 
   const handlePopularDestinationSelect = (value: string) => {
@@ -414,19 +427,98 @@ export function ContactForm() {
                       </div>
                     </div>
 
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                       <Label htmlFor="origen" className="text-white/50 text-xs font-black uppercase tracking-widest flex items-center gap-2">
                         <MapPin className="w-3 h-3 text-taxi-yellow" />
                         {t.contact.form.origin}
                       </Label>
-                      <Input
-                        id="origen"
-                        required
-                        className="bg-white/5 border-white/10 text-white h-14 rounded-2xl focus:border-taxi-yellow/50 font-medium"
-                        placeholder={t.contact.form.originPlaceholder}
-                        value={formData.origen}
-                        onChange={(e) => setFormData({ ...formData, origen: e.target.value })}
-                      />
+
+                      <div className="flex gap-3 flex-wrap">
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => setOrigenInputMode("text")}
+                          className={`rounded-xl px-4 h-10 font-bold transition-all ${
+                            origenInputMode === "text" ? "bg-taxi-yellow text-black" : "text-white/40 hover:text-white"
+                          }`}
+                        >
+                          {t.contact.form.write}
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => setOrigenInputMode("select")}
+                          className={`rounded-xl px-4 h-10 font-bold transition-all ${
+                            origenInputMode === "select" ? "bg-taxi-yellow text-black" : "text-white/40 hover:text-white"
+                          }`}
+                        >
+                          {t.contact.form.popular}
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => openMap("origen")}
+                          className="rounded-xl px-4 h-10 border border-white/10 text-white hover:bg-white hover:text-black font-bold transition-all"
+                        >
+                          <Map className="w-3 h-3 mr-2" />
+                          {t.contact.form.map}
+                        </Button>
+                      </div>
+
+                      {origenInputMode === "text" && (
+                        <Input
+                          id="origen"
+                          required
+                          className="bg-white/5 border-white/10 text-white h-14 rounded-2xl focus:border-taxi-yellow/50 font-medium"
+                          placeholder={t.contact.form.originPlaceholder}
+                          value={formData.origen}
+                          onChange={(e) => setFormData({ ...formData, origen: e.target.value, origenCoords: null })}
+                        />
+                      )}
+
+                      {origenInputMode === "select" && (
+                        <Select
+                          value={popularDestinations.find((d) => d.label === formData.origen)?.value || ""}
+                          onValueChange={(value) => {
+                            const dest = popularDestinations.find(d => d.value === value)
+                            if (dest) setFormData({ ...formData, origen: dest.label, origenCoords: dest.coords })
+                          }}
+                        >
+                          <SelectTrigger className="bg-white/5 border-white/10 text-white h-14 rounded-2xl">
+                            <SelectValue placeholder={t.contact.form.originPlaceholder} />
+                          </SelectTrigger>
+                          <SelectContent className="bg-black/90 border-white/10 backdrop-blur-xl text-white">
+                            {popularDestinations.map((dest) => (
+                              <SelectItem key={dest.value} value={dest.value} className="focus:bg-taxi-yellow focus:text-black font-medium">
+                                {dest.label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      )}
+
+                      {formData.origen && formData.origenCoords && (
+                        <motion.div 
+                          initial={{ opacity: 0, y: -10 }} 
+                          animate={{ opacity: 1, y: 0 }}
+                          className="flex items-center gap-3 p-4 bg-taxi-yellow/10 border border-taxi-yellow/20 rounded-2xl"
+                        >
+                          <MapPin className="w-5 h-5 text-taxi-yellow shrink-0" />
+                          <span className="text-sm text-yellow-400 font-bold flex-1">{formData.origen}</span>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setFormData({ ...formData, origen: "", origenCoords: null })}
+                            className="h-8 w-8 p-0 rounded-full hover:bg-taxi-yellow/20"
+                          >
+                            <X className="w-4 h-4 text-taxi-yellow" />
+                          </Button>
+                        </motion.div>
+                      )}
                     </div>
 
                     <div className="space-y-4">
@@ -462,7 +554,7 @@ export function ContactForm() {
                           type="button"
                           variant="ghost"
                           size="sm"
-                          onClick={() => setShowMap(true)}
+                          onClick={() => openMap("destino")}
                           className="rounded-xl px-4 h-10 border border-white/10 text-white hover:bg-white hover:text-black font-bold transition-all"
                         >
                           <Map className="w-3 h-3 mr-2" />

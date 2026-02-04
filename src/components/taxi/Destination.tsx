@@ -1,4 +1,5 @@
 "use client"
+import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
 import { ChevronLeft, ChevronRight, Plane, MapPin } from "lucide-react"
@@ -60,8 +61,16 @@ export function Destinations() {
     })
   }
 
+  const handleCardClick = () => {
+    const element = document.getElementById("contacto")
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+      window.history.pushState(null, "", "#contacto")
+    }
+  }
+
   return (
-    <section className="py-32 bg-[#050505] overflow-hidden">
+    <section id="destinos" className="py-32 bg-[#050505] overflow-hidden">
       <div className="container mx-auto px-6">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -119,7 +128,8 @@ export function Destinations() {
                       opacity: { duration: 0.4 },
                       scale: { duration: 0.4 }
                     }}
-                    className={`shrink-0 relative rounded-[2.5rem] overflow-hidden group/card bg-white/5 border border-white/10 ${
+                    onClick={handleCardClick}
+                    className={`shrink-0 relative rounded-[2.5rem] overflow-hidden group/card bg-white/5 border border-white/10 cursor-pointer ${
                       offset === 0 ? "w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]" : 
                       offset === 1 ? "hidden md:flex md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]" :
                       "hidden lg:flex lg:w-[calc(25%-18px)]"

@@ -8,7 +8,7 @@ export function HeroSection() {
     const { t } = useLanguage()
 
     return (
-        <section id="inicio" className="relative overflow-hidden h-[95vh] md:h-[80vh] flex items-center">
+        <section id="inicio" className="relative overflow-hidden  flex items-center pt-32">
             {/* Background Effects */}
             <div className="absolute inset-0 z-0">
                
@@ -29,7 +29,7 @@ export function HeroSection() {
                 />
             </div>
 
-            <div className="container mx-auto px-6 lg:px-20 relative z-10">
+            <div className="container mx-auto px-6 lg:px-20 relative z-10 mb-24">
                 <div className="flex flex-col items-center text-center">
                     {/* 24/7 Badge */}
                     <motion.div

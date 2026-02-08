@@ -87,12 +87,14 @@ function TaxiTypesComponent() {
     },
   ]
 
-  const handleCardClick = () => {
+  const scrollToContact = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault()
     const element = document.getElementById("contacto")
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
       window.history.pushState(null, "", "#contacto")
     }
+    setSelectedDestination(null)
   }
 
   return (
@@ -135,7 +137,7 @@ function TaxiTypesComponent() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
                 className="group relative flex flex-col pt-12 cursor-pointer"
-                onClick={handleCardClick}
+                onClick={() => scrollToContact()}
               >
                 <div className="relative z-10 bg-white/5 border border-white/10 backdrop-blur-xl rounded-[3rem] p-10 pt-60 h-full transition-all duration-500 group-hover:bg-white/10 group-hover:border-taxi-yellow/30 shadow-2xl">
                     {/* Taxi Type Badge */}
@@ -230,7 +232,7 @@ function TaxiTypesComponent() {
           </div>
 
           <div className="flex justify-center">
-            <Link href="#contacto">
+            <Link href="#contacto" onClick={scrollToContact}>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -291,7 +293,7 @@ function TaxiTypesComponent() {
                 >
                   Cerrar
                 </button>
-                <Link href="#contacto" onClick={() => setSelectedDestination(null)} className="flex-1 md:flex-none">
+                <Link href="#contacto" onClick={scrollToContact} className="flex-1 md:flex-none">
                   <button className="w-full px-8 py-4 bg-taxi-yellow text-black hover:bg-white rounded-xl text-sm font-black uppercase tracking-widest transition-all shadow-xl shadow-taxi-yellow/20">
                     Reservar ahora
                   </button>

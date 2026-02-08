@@ -12,20 +12,19 @@ export const metadata: Metadata = {
     "Servicio de taxi en Barcelona con precio cerrado garantizado. Taxis hasta 8 plazas, premium y adaptados PMR. Reserva ahora y paga al finalizar.",
   icons: {
     icon: [
-      /*   {
-          url: "/icon-light-32x32.png",
+          {
+          url: "/32x32b.png",
           media: "(prefers-color-scheme: light)",
         },
         {
-          url: "/icon-dark-32x32.png",
+          url: "/32x32b.png",
           media: "(prefers-color-scheme: dark)",
         },
         {
-          url: "/icon.svg",
+          url: "/32x32b.png",
           type: "image/svg+xml",
-        }, */
+        }, 
     ],
-    apple: "/apple-icon.png",
   },
 }
 

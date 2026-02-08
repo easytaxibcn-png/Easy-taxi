@@ -230,7 +230,7 @@ export const translations: Record<Language, TranslationType> = {
         next: "Siguiente",
         confirm: "Confirmar Reserva",
         sending: "Enviando...",
-        footer: "Te contactaremos en menos de 10 minutos para confirmar tu reserva",
+        footer: "Te contactaremos en menos de 10 minutos para confirmar tu reserva. Además, antes de la recogida, el conductor le llamará para su total tranquilidad.",
       },
       success: {
         title: "Reserva Enviada!",
@@ -391,7 +391,7 @@ export const translations: Record<Language, TranslationType> = {
         next: "Next",
         confirm: "Confirm Booking",
         sending: "Sending...",
-        footer: "We will contact you in less than 10 minutes to confirm your booking",
+        footer: "We will contact you in less than 10 minutes to confirm your booking. Additionally, before pick-up, the driver will call you for your peace of mind.",
       },
       success: {
         title: "Booking Sent!",

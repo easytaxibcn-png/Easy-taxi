@@ -50,7 +50,7 @@ export function Header() {
                 <div className="flex items-center justify-between">
                     <Link href="/" className="group flex items-center gap-2">
                         <div className="w-10 h-10 bg-taxi-yellow rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(251,191,36,0.3)] transition-transform group-hover:scale-110">
-                            <span className="text-black font-black text-xl italic">T</span>
+                            <span className="text-black font-black text-xl bold">ET</span>
                         </div>
                         <span className="text-2xl font-bold text-white tracking-tight">
                             Easytaxi<span className="text-taxi-yellow italic">Bcn</span>
@@ -81,13 +81,16 @@ export function Header() {
                         />
                     </div>
  
-                    {/* Mobile Menu Button */}
-                    <button
-                        className="lg:hidden w-11 h-11 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white"
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    >
-                        {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-                    </button>
+                    {/* Mobile Menu Items */}
+                    <div className="lg:hidden flex items-center gap-3">
+                        <LanguageSelector className="scale-90 origin-right" />
+                        <button
+                            className="w-11 h-11 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white"
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        >
+                            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                        </button>
+                    </div>
                 </div>
             </div>
  
@@ -98,12 +101,12 @@ export function Header() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
-                        className="lg:hidden fixed inset-0 h-screen bg-black z-[110] p-6 flex flex-col overflow-y-auto"
+                        className="lg:hidden fixed inset-0 h-screen bg-black z-110 p-6 flex flex-col overflow-y-auto"
                     >
                         <div className="flex items-center justify-between mb-12">
                             <Link href="/" className="flex items-center gap-2" onClick={() => setIsMenuOpen(false)}>
                                 <div className="w-10 h-10 bg-taxi-yellow rounded-xl flex items-center justify-center">
-                                    <span className="text-black font-black text-xl italic">T</span>
+                                    <span className="text-black font-black text-xl italic">ET</span>
                                 </div>
                                 <span className="text-2xl font-bold text-white tracking-tight">EasytaxiBcn</span>
                             </Link>
@@ -135,10 +138,6 @@ export function Header() {
                         </div>
  
                         <div className="mt-auto space-y-4">
-                            <div className="flex items-center justify-between bg-white/5 p-4 rounded-2xl border border-white/10">
-                                <span className="font-semibold text-white/50 text-sm tracking-wider uppercase">Idioma</span>
-                                <LanguageSelector />
-                            </div>
                             <div className="grid grid-cols-2 gap-4">
                                 <CallButton className="w-full justify-center py-4 rounded-2xl" />
                                 <ReserveButton

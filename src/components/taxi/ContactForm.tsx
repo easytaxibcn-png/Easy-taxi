@@ -175,7 +175,7 @@ export function ContactForm() {
                   initial={{ rotate: -10, scale: 0.5 }}
                   animate={{ rotate: 0, scale: 1 }}
                   transition={{ delay: 0.2, type: "spring" }}
-                  className="w-24 h-24 bg-taxi-yellow text-black rounded-[2rem] flex items-center justify-center mx-auto mb-10 shadow-[0_20px_50px_rgba(251,191,36,0.4)]"
+                  className="w-24 h-24 bg-taxi-yellow text-black rounded-4xl flex items-center justify-center mx-auto mb-10 shadow-[0_20px_50px_rgba(251,191,36,0.4)]"
                 >
                   <CheckCircle className="w-12 h-12" />
                 </motion.div>
@@ -671,6 +671,22 @@ export function ContactForm() {
                       />
                     </div>
 
+                    {/* Reassurance Message */}
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex items-center gap-4 p-6 bg-white/5 border border-white/10 rounded-3xl"
+                    >
+                      <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center shrink-0">
+                        <Phone className="w-6 h-6 text-taxi-yellow" />
+                      </div>
+                      <p className="text-sm text-gray-300 font-medium italic">
+                        {language === "es" 
+                          ? "Para su tranquilidad, el conductor le llamará unos minutos antes de la recogida."
+                          : "For your peace of mind, the driver will call you a few minutes before pick-up."}
+                      </p>
+                    </motion.div>
+
                     {/* Summary */}
                     <motion.div 
                       initial={{ opacity: 0, scale: 0.95 }}
@@ -787,7 +803,11 @@ export function ContactForm() {
               className="bg-black border border-white/10 rounded-[3rem] w-full max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl pb-4"
             >
               <div className="flex items-center justify-between p-8 border-b border-white/10">
-                <h3 className="text-xl font-bold text-white uppercase tracking-tight">{language === "es" ? "Selecciona el destino" : "Select destination"}</h3>
+                <h3 className="text-xl font-bold text-white uppercase tracking-tight">
+                  {language === "es" 
+                    ? (mapTarget === "origen" ? "Selecciona la recogida" : "Selecciona el destino")
+                    : (mapTarget === "origen" ? "Select pick-up location" : "Select destination")}
+                </h3>
                 <Button variant="ghost" size="icon" onClick={() => setShowMap(false)} className="text-white/50 hover:text-white rounded-xl">
                   <X className="w-6 h-6" />
                 </Button>

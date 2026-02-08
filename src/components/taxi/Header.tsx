@@ -46,19 +46,19 @@ export function Header() {
                 : "py-6 bg-transparent"
             }`}
         >
-            <div className="container mx-auto px-4 sm:px-6">
-                <div className="flex items-center justify-between gap-4">
-                    <Link href="/" className="group flex items-center gap-2">
-                        <div className="w-10 h-10 bg-taxi-yellow rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(251,191,36,0.3)] transition-transform group-hover:scale-110">
-                            <span className="text-black font-black text-xl bold">ET</span>
+            <div className="container mx-auto px-2 sm:px-6">
+                <div className="flex items-center justify-between gap-1 sm:gap-4">
+                    <Link href="/" className="group flex items-center gap-1 sm:gap-2">
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-taxi-yellow rounded-lg sm:rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(251,191,36,0.3)] transition-transform group-hover:scale-110 shrink-0">
+                            <span className="text-black font-black text-sm sm:text-xl bold">ET</span>
                         </div>
-                        <span className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-none">
+                        <span className="text-sm xs:text-lg sm:text-2xl font-bold text-white tracking-tight leading-none whitespace-nowrap">
                             Easytaxi<span className="text-taxi-yellow italic">Bcn</span>
                         </span>
                     </Link>
  
                     {/* Desktop Navigation */}
-                    <nav className="hidden lg:flex items-center gap-8">
+                    <nav className="hidden xl:flex items-center gap-8">
                         {navItems.map(item => (
                             <Link
                                 key={item.id}
@@ -71,7 +71,7 @@ export function Header() {
                         ))}
                     </nav>
  
-                    <div className="hidden lg:flex items-center gap-4">
+                    <div className="hidden sm:flex items-center gap-2">
                         <LanguageSelector className="w-[140px]" />
                         <div className="h-6 w-px bg-white/10 mx-2" />
                         <CallButton />
@@ -81,13 +81,13 @@ export function Header() {
                         />
                     </div>
  
-                    <div className="lg:hidden flex items-center gap-2">
+                    <div className="sm:hidden flex items-center gap-2">
                         <LanguageSelector className="w-[100px]" />
                         <button
-                            className="w-11 h-11 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white"
+                            className="w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                         >
-                            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                            {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                         </button>
                     </div>
                 </div>
@@ -142,6 +142,7 @@ export function Header() {
                                 <ReserveButton
                                     text={t.header.reserve}
                                     className="bg-taxi-yellow text-black w-full py-4 rounded-2xl font-bold shadow-lg"
+                                    onClick={() => setIsMenuOpen(false)}
                                 />
                             </div>
                         </div>

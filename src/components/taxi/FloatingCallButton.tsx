@@ -11,11 +11,9 @@ export function FloatingCallButton() {
   return (
     <motion.a
       href={`tel:${phoneNumber}`}
-      initial={{ opacity: 0, scale: 0.5, y: 20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-[104px] left-8 z-40 flex items-center justify-center"
+      className="fixed bottom-[104px] right-8 z-40 flex items-center justify-center"
     >
       <div className="relative group">
         {/* Pulsing Aura */}
@@ -30,10 +28,10 @@ export function FloatingCallButton() {
         </div>
 
         {/* Floating Tooltip */}
-        <div className="absolute left-full top-1/2 -translate-y-1/2 ml-4 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none -translate-x-2 group-hover:translate-x-0">
+        <div className="absolute right-full top-1/2 -translate-y-1/2 mr-4 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none translate-x-2 group-hover:translate-x-0">
           <div className="bg-white text-black text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl shadow-2xl relative">
             {t.header.call}
-            <div className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-white rotate-45" />
+            <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-white rotate-45" />
           </div>
         </div>
       </div>

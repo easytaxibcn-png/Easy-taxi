@@ -31,10 +31,10 @@ export function WhatsAppButton() {
         </div>
 
         {/* Floating Tooltip */}
-        <div className="absolute bottom-full left-0 mb-4 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none translate-y-2 group-hover:translate-y-0">
+        <div className="absolute left-full top-1/2 -translate-y-1/2 ml-4 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none -translate-x-2 group-hover:translate-x-0">
           <div className="bg-white text-black text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl shadow-2xl relative">
             Whatsapp
-            <div className="absolute top-full left-6 -translate-y-1/2 w-2 h-2 bg-white rotate-45" />
+            <div className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-white rotate-45" />
           </div>
         </div>
       </div>

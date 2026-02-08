@@ -1,4 +1,5 @@
 import { WhatsAppButton } from "@/components/taxi/WhatsAppButton";
+import { FloatingCallButton } from "@/components/taxi/FloatingCallButton";
 import { CookieBanner } from "@/components/taxi/CokkieBanner";
 import { ContactForm } from "@/components/taxi/ContactForm";
 import { Destinations } from "@/components/taxi/Destination";
@@ -26,6 +27,7 @@ export default function Home() {
       <Footer />
       <CookieBanner />
       <WhatsAppButton />
+      <FloatingCallButton />
     </main>
   )
 }

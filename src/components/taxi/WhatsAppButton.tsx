@@ -14,7 +14,7 @@ export function WhatsAppButton() {
       rel="noopener noreferrer"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-8 right-8 z-100 flex items-center justify-center"
+      className="fixed bottom-8 right-8 z-40 flex items-center justify-center"
     >
       <div className="relative group">
         {/* Pulsing Aura */}

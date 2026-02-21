@@ -13,11 +13,13 @@ export function Footer() {
             <div className="container mx-auto px-6 relative z-10">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-16">
                     <div className="max-w-md">
-                        <div className="flex items-center gap-3 mb-8">
-                            <div className="w-10 h-10 bg-taxi-yellow rounded-xl flex items-center justify-center font-black italic shadow-[0_10px_20px_rgba(251,191,36,0.2)]">T</div>
-                            <h3 className="text-3xl font-black text-white italic tracking-tighter uppercase">
-                                {t.footer.brand}
-                            </h3>
+                        <div className="flex items-center gap-2 mb-8">
+                            <div className="w-10 h-10 bg-taxi-yellow rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(251,191,36,0.3)] shrink-0">
+                                <span className="text-black font-black text-xl">ET</span>
+                            </div>
+                            <span className="text-2xl font-bold text-white tracking-tight leading-none whitespace-nowrap">
+                                Easytaxi<span className="text-taxi-yellow italic">Bcn</span>
+                            </span>
                         </div>
                         <nav className="flex flex-wrap gap-x-8 gap-y-6 text-[10px] font-black uppercase tracking-[0.2em] mb-12">
                             <Link href="#inicio" className="text-white/30 hover:text-taxi-yellow transition-all hover:tracking-[0.3em]">

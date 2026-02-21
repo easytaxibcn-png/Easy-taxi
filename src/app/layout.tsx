@@ -29,6 +29,7 @@ export const metadata: Metadata = {
 }
 
 import { LanguageProvider } from "@/contexts/LanguageContext"
+import Script from "next/script"
 
 export default function RootLayout({
   children,
@@ -37,6 +38,29 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      <head>
+        {/* Google Ads Tag */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17960671536"
+        />
+        <Script
+          id="google-ads"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              
+              gtag('config', 'AW-17960671536');
+              
+              // Conversion snippet
+              gtag('event', 'conversion', {'send_to': 'AW-17960671536/Zz1cCIKZZPsbELCyqPRC'});
+            `,
+          }}
+        />
+      </head>
       <body className={`font-sans antialiased`}>
         <LanguageProvider>
           {children}

@@ -813,7 +813,15 @@ export function ContactForm() {
                 </Button>
               </div>
               <div className="p-4 bg-black">
-                <MapPicker onSelect={handleMapSelect} initialCoords={{ lat: 41.3851, lng: 2.1734 }} />
+                <MapPicker 
+                  onSelect={handleMapSelect} 
+                  initialCoords={{ lat: 41.3851, lng: 2.1734 }} 
+                  confirmText={
+                    language === "es" 
+                      ? (mapTarget === "origen" ? "Confirmar recogida" : "Confirmar destino")
+                      : (mapTarget === "origen" ? "Confirm pick-up" : "Confirm destination")
+                  }
+                />
               </div>
             </motion.div>
           </motion.div>

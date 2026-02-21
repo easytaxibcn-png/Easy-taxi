@@ -22,6 +22,7 @@ const customIcon = new L.Icon({
 interface MapPickerProps {
     onSelect: (address: string, coords: { lat: number; lng: number }) => void
     initialCoords?: { lat: number; lng: number }
+    confirmText?: string
 }
 
 function LocationMarker({
@@ -40,7 +41,7 @@ function LocationMarker({
     return position ? <Marker position={[position.lat, position.lng]} icon={customIcon} /> : null
 }
 
-export default function MapPicker({ onSelect, initialCoords = { lat: 41.3851, lng: 2.1734 } }: MapPickerProps) {
+export default function MapPicker({ onSelect, initialCoords = { lat: 41.3851, lng: 2.1734 }, confirmText = "Confirmar destino" }: MapPickerProps) {
     const [position, setPosition] = useState<{ lat: number; lng: number } | null>(null)
     const [address, setAddress] = useState("")
     const [searchQuery, setSearchQuery] = useState("")
@@ -114,7 +115,7 @@ export default function MapPicker({ onSelect, initialCoords = { lat: 41.3851, ln
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                    className="flex-1"
+                    className="flex-1 text-black placeholder:text-gray-500 bg-white"
                 />
                 <Button
                     type="button"
@@ -140,14 +141,14 @@ export default function MapPicker({ onSelect, initialCoords = { lat: 41.3851, ln
             {/* Selected address */}
             {position && (
                 <div className="p-3 bg-neutral-50 rounded-lg border">
-                    <p className="text-sm text-muted-foreground mb-1">Ubicación seleccionada:</p>
+                    <p className="text-sm text-neutral-600 mb-1">Ubicación seleccionada:</p>
                     {isLoadingAddress ? (
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 text-black">
                             <Loader2 className="w-4 h-4 animate-spin" />
                             <span className="text-sm">Obteniendo dirección...</span>
                         </div>
                     ) : (
-                        <p className="text-sm font-medium">{address}</p>
+                        <p className="text-sm font-medium text-black">{address}</p>
                     )}
                 </div>
             )}
@@ -159,7 +160,7 @@ export default function MapPicker({ onSelect, initialCoords = { lat: 41.3851, ln
                 disabled={!position || !address || isLoadingAddress}
                 className="w-full bg-taxi-yellow text-black hover:bg-taxi-yellow/90 font-semibold"
             >
-                Confirmar destino
+                {confirmText}
             </Button>
 
             <p className="text-xs text-center text-muted-foreground">

@@ -143,8 +143,8 @@ export const translations: Record<Language, TranslationType> = {
       contacto: "Contacto",
     },
     hero: {
-      title: "Taxi Barcelona",
-      highlight: "PRECIO CERRADO",
+      title: "Taxi Catalonia",
+      highlight: "TAXIMETRO Y PRECIO CERRADO",
       description: "Taxi en menos de 10 minutos. Taxis hasta 8 plazas, premium y adaptados PMR.",
       secondary: "Reserva ahora y paga al finalizar el servicio",
       cta: "Reservar Ahora",
@@ -268,7 +268,7 @@ export const translations: Record<Language, TranslationType> = {
       cta: "Consigue tu Taxi Ahora",
       prices: {
         estandar: "Desde 12€",
-        plazas: "Desde 19€",
+        plazas: "Desde 16€",
         adaptado: "Desde 16€",
         premium: "Desde 16€",
       },
@@ -311,7 +311,7 @@ export const translations: Record<Language, TranslationType> = {
     },
     hero: {
       title: "Barcelona Taxi",
-      highlight: "FIXED PRICE",
+      highlight: "TAXIMETER AND FIXED PRICE",
       description: "Taxi in less than 10 minutes. Taxis up to 8 seats, premium and wheelchair accessible (PMR).",
       secondary: "Book now and pay at the end of the service",
       cta: "Book Now",
@@ -435,7 +435,7 @@ export const translations: Record<Language, TranslationType> = {
       cta: "Get your Taxi Now",
       prices: {
         estandar: "From 12€",
-        plazas: "From 19€",
+        plazas: "From 16€",
         adaptado: "From 16€",
         premium: "From 16€",
       },

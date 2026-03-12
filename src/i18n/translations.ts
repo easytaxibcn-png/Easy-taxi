@@ -143,10 +143,10 @@ export const translations: Record<Language, TranslationType> = {
       contacto: "Contacto",
     },
     hero: {
-      title: "Taxi Catalonia",
+      title: "TAXI CATALUNYA",
       highlight: "TAXIMETRO Y PRECIO CERRADO",
-      description: "Taxi en menos de 10 minutos. Taxis hasta 8 plazas, premium y adaptados PMR.",
-      secondary: "Reserva ahora y paga al finalizar el servicio",
+      description: "Taxi en 10 minutos. Taxis hasta 8 plazas, premium y adaptados PMR.",
+      secondary: "Te recogemos ESTES DONDE ESTES. Reserva ahora y PAGA AL FINALIZAR EL SERVICIO",
       cta: "Reservar Ahora",
       badge: "Disponible 24/7",
     },
@@ -310,7 +310,7 @@ export const translations: Record<Language, TranslationType> = {
       contacto: "Contact",
     },
     hero: {
-      title: "Barcelona Taxi",
+      title: "TAXI CATALONIA",
       highlight: "TAXIMETER AND FIXED PRICE",
       description: "Taxi in less than 10 minutes. Taxis up to 8 seats, premium and wheelchair accessible (PMR).",
       secondary: "Book now and pay at the end of the service",

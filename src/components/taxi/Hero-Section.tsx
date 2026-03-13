@@ -8,7 +8,7 @@ export function HeroSection() {
     const { t } = useLanguage()
 
     return (
-        <section id="inicio" className="relative overflow-hidden flex items-center pt-32 min-h-screen">
+        <section id="inicio" className="relative overflow-hidden flex items-center pt-16 min-h-[80vh]">
             {/* Background Image */}
             <div 
                 className="absolute inset-0 z-0"
@@ -43,14 +43,14 @@ export function HeroSection() {
                 />
             </div>
 
-            <div className="container mx-auto px-6 lg:px-20 relative z-10 mb-24">
+            <div className="container mx-auto px-6 lg:px-20 relative z-10 mb-12">
                 <div className="flex flex-col items-center text-center">
                     {/* 24/7 Badge */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
-                        className="mb-8"
+                        className="mb-6"
                     >
                         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md shadow-[0_0_20px_rgba(251,191,36,0.2)]">
                             <span className="relative flex h-3 w-3">
@@ -68,7 +68,7 @@ export function HeroSection() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.1] mb-6 tracking-tight"
+                            className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.1] mb-4 tracking-tight"
                         >
                             {t.hero.title}
                             <div className="mt-2 text-taxi-yellow italic relative inline-block">
@@ -86,7 +86,7 @@ export function HeroSection() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.4 }}
-                            className="text-white text-xl md:text-2xl mb-12 max-w-2xl mx-auto leading-relaxed"
+                            className="text-white text-xl md:text-2xl mb-8 max-w-2xl mx-auto leading-relaxed"
                         >
                             {t.hero.description}
                             <span className="text-taxi-yellow font-semibold block mt-2">

@@ -8,7 +8,7 @@ const CallButton = ({ className }: { className?: string }) => {
   const { t } = useLanguage()
 
   return (
-    <a href="tel:+34641230218">
+    <a href="tel:+34614473393">
       <Button
         variant="secondary"
         className={className || "border-white text-foreground hover:bg-white  bg-white"}
